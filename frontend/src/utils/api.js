@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-// Configure axios defaults - use proxy in development
-axios.defaults.baseURL = import.meta.env.DEV ? '' : 'http://localhost:8080'
+// Configure axios defaults - use environment variable or fallback to proxy
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '' : 'http://localhost:8080')
+axios.defaults.baseURL = API_URL
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 
 // Add response interceptor to handle errors globally
